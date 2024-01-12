@@ -162,3 +162,12 @@ a{
     font-size: 11px;
     justify-content: space-between;
 }
+.footer{
+    margin-top: 50px;
+}
+.about{
+display: flex;
+flex-direction: column;
+gap: 20px;
+padding-left: 20px;
+}

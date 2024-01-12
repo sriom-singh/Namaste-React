@@ -9,6 +9,7 @@ import About from "./src/components/About";
 import Footer from "./src/components/Footer";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Login from "./src/components/Login";
+import Profile from "./src/components/Profile";
 
 
 // Nested Heading Using createElement
@@ -74,9 +75,15 @@ const router = createBrowserRouter([
       {
           path: "/about",
           element: <About />,
+          children:[
+            {
+              path:"profile",
+              element:<Profile />
+            },
+          ]
       },
       {
-          path:"/login",
+          path:"login",
           element:<Login />
       },
       {
