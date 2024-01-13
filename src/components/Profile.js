@@ -1,12 +1,24 @@
+import { useEffect } from "react";
 import ClassComponent from "./ClassComponent";
- const Profile = () => {
+const Profile = () => {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log("Koi to roklo");
+    }, 1000);
+
+    //This return will run after You will leave this page.(Unmounting)
+    return () => {
+      clearInterval(timer);
+      console.log("Don aa gya tumhe rokne");
+    };
+  });
   return (
     <div>
-    <h2>Profile</h2>
-    <ClassComponent name={"Sriom"} />
+      <h2>Profile</h2>
+      <ClassComponent name={"Sriom"} />
     </div>
-  )
-}
+  );
+};
 
 export default Profile;
 
