@@ -3,24 +3,15 @@ import { useParams } from "react-router-dom";
 
 import { URL_product } from "./Constant";
 import Shimmer from "./Shimmer";
-
+import useProducts from "../utils/useProducts";
 
  const RestaurantMenu = () => {
-    // How to read a dyanamic URL params.
+    // How to read a dyanamic URL using params.
     const {resId} = useParams();
-    const [detailData , setDetailData] = useState("");
+    
 
-    useEffect(()=>{
-        getData();
-    },[])
+    const detailData = useProducts(resId)
 
-    async function getData(){
-        const data = await fetch(`https://dummyjson.com/products/${resId}`);
-        const json = await data.json();
-        console.log(json)
-        setDetailData(json);
-    }
-    console.log(detailData)
   return detailData===""?<Shimmer />:(
     <div key='122'>
         <h1>RestaurantMenu {resId}</h1> 

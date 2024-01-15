@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy,Suspense } from "react";
 import { createBrowserRouter,createRoutesFromElements,Outlet,Route,RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 
@@ -10,8 +10,10 @@ import Footer from "./src/components/Footer";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Login from "./src/components/Login";
 import Profile from "./src/components/Profile";
+import Shimmer from "./src/components/Shimmer";
 
 
+//-------------------------------------------------------------------
 // Nested Heading Using createElement
 // const Heading1 = React.createElement("div", { className: "tile", key: "1" }, [
 //   React.createElement("h1", {}, "Heading1"),
@@ -28,7 +30,7 @@ import Profile from "./src/components/Profile";
 
 //     </div>
 // )
-
+//---------------------------------------------------------------
 //Nested heading using JSX Functional Component.
 // const Name = function (){
 //     return(<div className="title">
@@ -44,12 +46,20 @@ import Profile from "./src/components/Profile";
 //         <Name />
 //         </div>);
 // }
+// --------------------------------------------------------------------
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// root.render(<Name />);
-// root.render(Heading2);
 
+// Chunking
+// Code Splitting
+// Dynamic Bundling
+// Lazy Loading
+// Dynamic Import
+// On Demand Loading
+
+// Don't write this in a Component.
+const InstaDelivery = lazy(()=> import("./src/components/InstaDelivery"));
+// Upon on Demand Loading  -> upon render -> suspend loading
 
 const AppLayout = () =>{
  return( <>
@@ -90,10 +100,18 @@ const router = createBrowserRouter([
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
      },
-    
+     {
+      path: "/instaDelivery",
+      // Suspense is like Promise.
+      element: (<Suspense fallback={<Shimmer />}>
+                  <InstaDelivery />
+              </Suspense>),
+     },
+  
     ],
   }
   
 ]);
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={router} />);
