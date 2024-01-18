@@ -51,12 +51,12 @@ class ClassComponent extends React.Component {
     return (
       <>
         {/* 🧿 We can get props using "this" keyword. */}
-        <img src={this.state?.userInfo?.avatar_url}></img>
+        <img className="w-1/3" src={this.state?.userInfo?.avatar_url}></img>
         <p>Hello, I am {this.state?.userInfo?.name}.</p>
         <p>I am from {this.state?.userInfo?.location} .</p>
 
         {/* 🧿 We Cannot Mutate state directly - count = 24 */}
-        <button
+        {/* <button
           onClick={() =>
             this.setState({
               count: this.state.count + 1,
@@ -65,7 +65,7 @@ class ClassComponent extends React.Component {
           }
         >
           Increase
-        </button>
+        </button> */}
       </>
     );
   }

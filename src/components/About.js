@@ -2,13 +2,16 @@ import { Link, Outlet } from "react-router-dom";
 import { Component } from "react";
 const About = () =>{
     return(
- <>
-    <h1>About</h1>
-    <p>This is my About Section</p>
-    <Link to="profile">View Profile</Link>
-   <Outlet />
+ <div className="flex  align-middle justify-evenly w-full gap-0 mt-5">
 
- </>
+  <div className=" flex flex-col justify-center gap-3 pl-8 ">
+    <h1 className="text-3xl font-semibold uppercase tracking-tight">About</h1>
+    <p className="w-3/4">Greetings! I'm Sri Om Sharan, a Front-end Developer with a passion for creating UI. My journey in learning has been a fascinating exploration, where I've had the opportunity to learn anything free from YouTube.</p>
+    <Link to="profile" className="text-center mb-20 w-28 text-sm rounded bg-orange-500 p-4 mt-8 text-white">View Profile</Link>
+   
+    </div>
+   <Outlet />
+ </div>
 )}
 
 

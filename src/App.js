@@ -2,15 +2,15 @@ import React, { lazy,Suspense } from "react";
 import { createBrowserRouter,createRoutesFromElements,Outlet,Route,RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 
-import HeaderComponent from "./src/components/HeaderComponent";
-import Body from "./src/components/Body";
+import HeaderComponent from "./components/HeaderComponent";
+import Body from "./components/Body";
 import Error from "./Error";
-import About from "./src/components/About";
-import Footer from "./src/components/Footer";
-import RestaurantMenu from "./src/components/RestaurantMenu";
-import Login from "./src/components/Login";
-import Profile from "./src/components/Profile";
-import Shimmer from "./src/components/Shimmer";
+import About from "./components/About";
+import Footer from "./components/Footer";
+import RestaurantMenu from "./components/RestaurantMenu";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import Shimmer from "./components/Shimmer";
 
 
 //-------------------------------------------------------------------
@@ -58,7 +58,7 @@ import Shimmer from "./src/components/Shimmer";
 // On Demand Loading
 
 // Don't write this in a Component.
-const InstaDelivery = lazy(()=> import("./src/components/InstaDelivery"));
+const InstaDelivery = lazy(()=> import("./components/InstaDelivery"));
 // Upon on Demand Loading  -> upon render -> suspend loading
 
 const AppLayout = () =>{

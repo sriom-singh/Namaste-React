@@ -10,11 +10,11 @@ import useProducts from "../utils/useProducts";
     const {resId} = useParams();
     
 
-    const detailData = useProducts(resId)
+  const detailData = useProducts(resId)
 
   return detailData===""?<Shimmer />:(
     <div key='122'>
-        <h1>RestaurantMenu {resId}</h1> 
+        <h1>Product {resId}</h1> 
         <img src={detailData?.images[0]}></img>
         <h2>{detailData?.title}</h2>
         <h6>{detailData?.category}</h6>
