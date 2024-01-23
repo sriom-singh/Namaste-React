@@ -49,11 +49,11 @@ class ClassComponent extends React.Component {
   render() {
     console.log("Render(child)");
     return (
-      <>
+      <div className="flex flex-col flex-2 justify-center align-middle place-items-center">
         {/* 🧿 We can get props using "this" keyword. */}
-        <img className="w-1/3" src={this.state?.userInfo?.avatar_url}></img>
-        <p>Hello, I am {this.state?.userInfo?.name}.</p>
-        <p>I am from {this.state?.userInfo?.location} .</p>
+        <img className="rounded-full p-2" src={this.state?.userInfo?.avatar_url}></img>
+        <p className="font-semibold">{this.state?.userInfo?.name}</p>
+        <p>({this.state?.userInfo?.location})</p>
 
         {/* 🧿 We Cannot Mutate state directly - count = 24 */}
         {/* <button
@@ -66,7 +66,7 @@ class ClassComponent extends React.Component {
         >
           Increase
         </button> */}
-      </>
+      </div>
     );
   }
 }

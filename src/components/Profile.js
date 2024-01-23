@@ -13,9 +13,7 @@ const Profile = () => {
     };
   });
   return (
-    <div className="w-full flex flex-col">
       <ClassComponent name={"Sriom"} />
-    </div>
   );
 };
 

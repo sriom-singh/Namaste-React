@@ -10,7 +10,7 @@ const Search = () => {
         className="border outline-0 border-slate-300 w-[300px] p-1 pl-2 rounded focus:border-orange-600"
           type="search"
           id="input"
-          placeholder="Search here..'"
+          placeholder="Search here.."
           value={searchText} // Controlled input value
           onChange={(e) => {
             setSearchText(e.target.value);

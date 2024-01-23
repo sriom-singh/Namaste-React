@@ -1,5 +1,11 @@
-import React, { lazy,Suspense } from "react";
-import { createBrowserRouter,createRoutesFromElements,Outlet,Route,RouterProvider } from "react-router-dom";
+import React, { lazy, Suspense, useState } from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Outlet,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import ReactDOM from "react-dom/client";
 
 import HeaderComponent from "./components/HeaderComponent";
@@ -12,6 +18,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Shimmer from "./components/Shimmer";
 
+import UserContext from "./utils/UserContext";
 
 //-------------------------------------------------------------------
 // Nested Heading Using createElement
@@ -48,8 +55,6 @@ import Shimmer from "./components/Shimmer";
 // }
 // --------------------------------------------------------------------
 
-
-
 // Chunking
 // Code Splitting
 // Dynamic Bundling
@@ -58,59 +63,65 @@ import Shimmer from "./components/Shimmer";
 // On Demand Loading
 
 // Don't write this in a Component.
-const InstaDelivery = lazy(()=> import("./components/InstaDelivery"));
+const InstaDelivery = lazy(() => import("./components/InstaDelivery"));
 // Upon on Demand Loading  -> upon render -> suspend loading
 
-const AppLayout = () =>{
- return( <>
-  <HeaderComponent />
-  <Outlet />
-  <Footer />
-  </>)
-}
-
-
+const AppLayout = () => {
+  const [user] = useState({
+    name: "sri om",
+    email: "sriomsharan543@gmail.com",
+  });
+  return (
+    // Using UserContext(context api file name).Provider we can change or overwrite default context value.
+    <UserContext.Provider value={user}>
+    {/*All components which are written inside  having context value - will change  */}
+      <HeaderComponent />
+      <Outlet />
+      <Footer />
+    </UserContext.Provider>
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
     // loader: rootLoader,
-    errorElement:<Error />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
         element: <Body />,
-      },  
-      {
-          path: "/about",
-          element: <About />,
-          children:[
-            {
-              path:"profile",
-              element:<Profile />
-            },
-          ]
       },
       {
-          path:"login",
-          element:<Login />
+        path: "/about",
+        element: <About />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+        ],
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
-     },
-     {
-      path: "/instaDelivery",
-      // Suspense is like Promise.
-      element: (<Suspense fallback={<Shimmer />}>
-                  <InstaDelivery />
-              </Suspense>),
-     },
-  
+      },
+      {
+        path: "/instaDelivery",
+        // Suspense is like Promise.
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <InstaDelivery />
+          </Suspense>
+        ),
+      },
     ],
-  }
-  
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

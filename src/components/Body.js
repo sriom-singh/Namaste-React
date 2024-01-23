@@ -21,15 +21,19 @@ const Body = () => {
   }
 
   return data === "" ? (
+   <> <Search />
+    <Hero />
     <Shimmer />
+    </>
   ) : (
     <div className="bg-gradient-to-t from-gray-100 via-orange-400 to-gray-100">
-     <Search />
-     <Hero />
+              <Search />
+                <Hero />
       <div className="pb-10 flex flex-wrap align-middle justify-center gap-4 bg-gradient-to-t from-gray-100 via-orange-400 to-gray-100">
-       
+               
         {data.map((item) => {
           return (
+            
             <Link to={"/restaurant/" + item?.id}>
               <RestuarantCard {...item} />
             </Link>
